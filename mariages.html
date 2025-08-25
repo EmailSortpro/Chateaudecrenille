@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mariages au Château du Vivier - Célébrez votre union dans un lieu d'exception en Seine-et-Marne">
+    <title>Mariages - Château du Vivier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FAF7F2;
+            --warm-white: #FFFFFF;
+            --gold: #C9A961;
+            --gold-light: #E4D4A8;
+            --sage-green: #7A8B7F;
+            --warm-brown: #8B6F47;
+            --charcoal: #3A3A3A;
+            --light-gray: #F5F5F5;
+            --soft-pink: #F5E6E0;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--warm-white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(255,255,255,0.98);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu > li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--gold);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 250px;
+            background: var(--warm-white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-radius: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            border: 1px solid rgba(201, 169, 97, 0.2);
+        }
+
+        .nav-menu li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            padding: 12px 20px;
+            font-size: 13px;
+            text-transform: none;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+        }
+
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a:hover {
+            background: linear-gradient(90deg, rgba(201, 169, 97, 0.1) 0%, transparent 100%);
+            color: var(--gold);
+            padding-left: 25px;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23F5E6E0"/><circle cx="960" cy="540" r="300" fill="%23FAF7F2" opacity="0.5"/><path d="M760 440 L960 340 L1160 440 L1160 640 L960 740 L760 640 Z" fill="%23C9A961" opacity="0.3"/><text x="960" y="540" text-anchor="middle" font-family="Georgia" font-size="72" fill="%238B6F47">Mariages de Rêve</text></svg>');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            margin-top: 70px;
+        }
+
+        .page-hero-content {
+            text-align: center;
+            color: var(--warm-white);
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .page-hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .page-hero p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+            background: rgba(255,255,255,0.95);
+            padding: 20px 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--charcoal);
+            opacity: 0.7;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 100px 50px;
+            background: var(--warm-white);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            opacity: 0.7;
+            margin-bottom: 60px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            text-decoration: none;
+            display: block;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(201, 169, 97, 0.2);
+        }
+
+        .service-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--gold-light), var(--sage-green));
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .service-content {
+            padding: 35px;
+            background: var(--warm-white);
+        }
+
+        .service-title {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            color: var(--charcoal);
+            line-height: 1.8;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            color: var(--warm-white);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Why Us Section */
+        .why-us-section {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .why-us-item {
+            text-align: center;
+        }
+
+        .why-us-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--gold), var(--sage-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--warm-white);
+            font-size: 2.5rem;
+            box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
+        }
+
+        .why-us-item h3 {
+            color: var(--warm-brown);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .why-us-item p {
+            color: var(--charcoal);
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        /* Testimonial Section */
+        .testimonial-section {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, var(--sage-green) 0%, #5A6B5F 100%);
+            color: var(--warm-white);
+            text-align: center;
+        }
+
+        .testimonial-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-size: 1.1rem;
+            color: var(--gold-light);
+        }
+
+        .testimonial-rating {
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: var(--gold-light);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 50px;
+            background: var(--warm-white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: var(--warm-brown);
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            color: var(--warm-white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-cta.secondary {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #2A2A2A 100%);
+            color: var(--warm-white);
+            padding: 50px;
+            text-align: center;
+        }
+
+        /* Mobile */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                background: var(--warm-white);
+                width: 100%;
+                transition: 0.3s;
+                padding: 20px 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                gap: 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: rgba(201, 169, 97, 0.05);
+                margin: 0;
+                display: none;
+            }
+
+            .nav-menu li.dropdown-open .dropdown {
+                display: block;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .page-hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-stats {
+                gap: 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-section,
+            .why-us-section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">CHÂTEAU DU VIVIER</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/histoire.html">Histoire</a></li>
+                <li><a href="/mariages.html" class="active">Mariages</a></li>
+                <li><a href="/entreprise.html">Entreprise</a></li>
+                <li>
+                    <a href="#">Services ▼</a>
+                    <div class="dropdown">
+                        <a href="/ceremonie-laique.html">Cérémonie Laïque</a>
+                        <a href="/sainte-chapelle.html">Sainte Chapelle</a>
+                        <a href="/vin-honneur.html">Vin d'Honneur</a>
+                        <a href="/diner-reception.html">Dîner de Réception</a>
+                        <a href="/decoration-florale.html">Décoration Florale</a>
+                        <a href="/photos-mariage.html">Séance Photos</a>
+                    </div>
+                </li>
+                <li><a href="/galerie.html">Galerie</a></li>
+                <li><a href="/tarifs.html">Tarifs</a></li>
+                <li><a href="/temoignages.html">Témoignages</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Votre Mariage de Rêve</h1>
+            <p>
+                Un lieu royal d'exception pour célébrer votre amour<br>
+                dans un cadre historique unique en Île-de-France
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">850+</div>
+                    <div class="stat-label">Mariages Célébrés</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">220</div>
+                    <div class="stat-label">Invités Maximum</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Hectares de Parc</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Couples Heureux</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title">Nos Prestations Mariage</h2>
+            <p class="section-subtitle">Chaque détail pensé pour créer votre journée parfaite</p>
+            
+            <div class="services-grid">
+                <a href="/ceremonie-laique.html" class="service-card">
+                    <div class="service-image">
+                        <div class="service-icon">💑</div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Cérémonie Laïque</h3>
+                        <p class="service-description">
+                            Créez une cérémonie unique et personnalisée dans nos jardins romantiques 
+                            ou dans les ruines historiques du château.
+                        </p>
+                        <span class="btn-primary">Découvrir</span>
+                    </div>
+                </a>
+
+                <a href="/sainte-chapelle.html" class="service-card">
+                    <div class="service-image">
+                        <div class="service-icon">⛪</div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Sainte Chapelle</h3>
+                        <p class="service-description">
+                            Joyau gothique du XIVe siècle pour une cérémonie religieuse ou laïque 
+                            dans un cadre historique exceptionnel.
+                        </p>
+                        <span class="btn-primary">Découvrir</span>
+                    </div>
+                </a>
+
+                <a href="/vin-honneur.html" class="service-card">
+                    <div class="service-image">
+                        <div class="service-icon">🥂</div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Vin d'Honneur</h3>
+                        <p class="service-description">
+                            Cocktail enchanteur dans nos jardins avec vue sur les étangs. 
+                            Animations culinaires et bars éphémères.
+                        </p>
+                        <span class="btn-primary">Découvrir</span>
+                    </div>
+                </a>
+
+                <a href="/diner-reception.html" class="service-card">
+                    <div class="service-image">
+                        <div class="service-icon">🍽️</div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Dîner de Réception</h3>
+                        <p class="service-description">
+                            Salles somptueuses jusqu'à 220 convives. Gastronomie raffinée 
+                            et service d'excellence pour votre soirée.
+                        </p>
+                        <span class="btn-primary">Découvrir</span>
+                    </div>
+                </a>
+
+                <a href="/decoration-florale.html" class="service-card">
+                    <div class="service-image">
+                        <div class="service-icon">🌸</div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Décoration Florale</h3>
+                        <p class="service-description">
+                            Mise en scène florale personnalisée par Anne. Ambiances romantiques 
+                            et créations sur-mesure.
+                        </p>
+                        <span class="btn-primary">Découvrir</span>
+                    </div>
+                </a>
+
+                <a href="/photos-mariage.html" class="service-card">
+                    <div class="service-image">
+                        <div class="service-icon">📸</div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Séance Photos</h3>
+                        <p class="service-description">
+                            7 hectares de décors naturels pour des photos inoubliables. 
+                            Jardins, étangs et architecture historique.
+                        </p>
+                        <span class="btn-primary">Découvrir</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="why-us-section">
+        <div class="container">
+            <h2 class="section-title">Pourquoi Choisir le Château du Vivier</h2>
+            <p class="section-subtitle">L'excellence au service de votre bonheur</p>
+            
+            <div class="why-us-grid">
+                <div class="why-us-item">
+                    <div class="why-us-icon">👑</div>
+                    <h3>Lieu Historique</h3>
+                    <p>Château royal du XIIIe siècle, maison de campagne des rois de France</p>
+                </div>
+                <div class="why-us-item">
+                    <div class="why-us-icon">🌟</div>
+                    <h3>Expérience</h3>
+                    <p>Plus de 850 mariages organisés avec passion par Anne & Philippe</p>
+                </div>
+                <div class="why-us-item">
+                    <div class="why-us-icon">🏰</div>
+                    <h3>Exclusivité</h3>
+                    <p>Privatisation complète du domaine pour votre événement unique</p>
+                </div>
+                <div class="why-us-item">
+                    <div class="why-us-icon">🎯</div>
+                    <h3>Sur Mesure</h3>
+                    <p>Personnalisation totale selon vos envies et votre budget</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="testimonial-content">
+            <div class="testimonial-rating">★★★★★</div>
+            <p class="testimonial-text">
+                "Un lieu magique ! Notre mariage au Château du Vivier restera gravé à jamais. 
+                La Sainte Chapelle est sublime, les jardins parfaits pour les photos, 
+                et Anne & Philippe sont d'une gentillesse et d'un professionnalisme exemplaires. 
+                Nos invités nous en parlent encore !"
+            </p>
+            <p class="testimonial-author">— Marie & Thomas, Juillet 2023</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Commençons à Créer Votre Mariage de Rêve</h2>
+        <p>Venez découvrir le château lors d'une visite privée avec Anne & Philippe</p>
+        <div class="cta-buttons">
+            <a href="/contact.html" class="btn-cta">Planifier une Visite</a>
+            <a href="/tarifs.html" class="btn-cta secondary">Voir les Tarifs</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Château du Vivier - Tous droits réservés</p>
+        <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 10px;">
+            77610 Fontenay-Trésigny • 01 64 42 64 80 • contact@chateauduvivier.com
+        </p>
+    </footer>
+
+    <script>
+        // Mobile menu
+        document.getElementById('mobileMenu').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Mobile dropdown
+        document.querySelectorAll('.nav-menu > li > a').forEach(link => {
+            if (link.textContent.includes('▼')) {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const parent = link.parentElement;
+                        parent.classList.toggle('dropdown-open');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
