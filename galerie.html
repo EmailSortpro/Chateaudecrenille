@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galerie photos du Château du Vivier - Mariages, événements d'entreprise, espaces de réception">
+    <title>Galerie - Château du Vivier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FAF7F2;
+            --warm-white: #FFFFFF;
+            --gold: #C9A961;
+            --gold-light: #E4D4A8;
+            --sage-green: #7A8B7F;
+            --warm-brown: #8B6F47;
+            --charcoal: #3A3A3A;
+            --light-gray: #F5F5F5;
+            --soft-pink: #F5E6E0;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--warm-white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(255,255,255,0.98);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .page-hero {
+            padding: 150px 50px 80px;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--soft-pink) 50%, var(--light-gray) 100%);
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Filter Tabs */
+        .filter-section {
+            padding: 40px 50px;
+            background: var(--warm-white);
+            border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+        }
+
+        .filter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 25px;
+            background: var(--light-gray);
+            border: 1px solid rgba(201, 169, 97, 0.3);
+            border-radius: 30px;
+            color: var(--charcoal);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn:hover {
+            background: var(--cream);
+            border-color: var(--gold);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            color: var(--warm-white);
+            border-color: var(--gold);
+        }
+
+        /* Gallery Grid */
+        .gallery-section {
+            padding: 80px 50px;
+            background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, var(--gold-light), var(--sage-green));
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--warm-white);
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 25px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-title {
+            color: var(--warm-white);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .gallery-category {
+            color: var(--gold-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--warm-white);
+            font-size: 3rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--gold);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--warm-white);
+            font-size: 3rem;
+            cursor: pointer;
+            padding: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            color: var(--gold);
+        }
+
+        .lightbox-prev {
+            left: -60px;
+        }
+
+        .lightbox-next {
+            right: -60px;
+        }
+
+        /* Instagram Section */
+        .instagram-section {
+            padding: 80px 50px;
+            background: linear-gradient(135deg, var(--sage-green) 0%, #5A6B5F 100%);
+            text-align: center;
+            color: var(--warm-white);
+        }
+
+        .instagram-section h2 {
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+        }
+
+        .instagram-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .btn-instagram {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--charcoal);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-instagram:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #2A2A2A 100%);
+            color: var(--warm-white);
+            padding: 50px;
+            text-align: center;
+        }
+
+        /* Mobile */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--charcoal);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                background: var(--warm-white);
+                width: 100%;
+                transition: 0.3s;
+                padding: 20px 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                gap: 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item.large {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .lightbox-nav {
+                display: none;
+            }
+
+            .gallery-section {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">CHÂTEAU DU VIVIER</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/histoire.html">Histoire</a></li>
+                <li><a href="/mariages.html">Mariages</a></li>
+                <li><a href="/entreprise.html">Entreprise</a></li>
+                <li><a href="/galerie.html" class="active">Galerie</a></li>
+                <li><a href="/tarifs.html">Tarifs</a></li>
+                <li><a href="/temoignages.html">Témoignages</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <h1>Galerie Photos</h1>
+        <p>
+            Découvrez l'univers enchanteur du Château du Vivier 
+            à travers nos plus beaux moments capturés
+        </p>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="filter-section">
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterGallery('all')">Toutes</button>
+            <button class="filter-btn" onclick="filterGallery('mariages')">Mariages</button>
+            <button class="filter-btn" onclick="filterGallery('ceremonies')">Cérémonies</button>
+            <button class="filter-btn" onclick="filterGallery('receptions')">Réceptions</button>
+            <button class="filter-btn" onclick="filterGallery('jardins')">Jardins</button>
+            <button class="filter-btn" onclick="filterGallery('entreprise')">Entreprise</button>
+            <button class="filter-btn" onclick="filterGallery('gastronomie')">Gastronomie</button>
+            <button class="filter-btn" onclick="filterGallery('decoration')">Décoration</button>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-grid">
+                <div class="gallery-item large" data-category="mariages" onclick="openLightbox(1)">
+                    <div class="gallery-image">
+                        Cérémonie Sainte Chapelle
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Cérémonie dans la Sainte Chapelle</div>
+                        <div class="gallery-category">Mariages</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="jardins" onclick="openLightbox(2)">
+                    <div class="gallery-image">
+                        Jardins au coucher du soleil
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Jardins au coucher du soleil</div>
+                        <div class="gallery-category">Extérieurs</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="receptions" onclick="openLightbox(3)">
+                    <div class="gallery-image">
+                        Salle Charles VII
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Salle Charles VII</div>
+                        <div class="gallery-category">Réceptions</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="gastronomie" onclick="openLightbox(4)">
+                    <div class="gallery-image">
+                        Plat gastronomique
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Création du Chef</div>
+                        <div class="gallery-category">Gastronomie</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="decoration" onclick="openLightbox(5)">
+                    <div class="gallery-image">
+                        Décoration florale
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Art floral</div>
+                        <div class="gallery-category">Décoration</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item large" data-category="entreprise" onclick="openLightbox(6)">
+                    <div class="gallery-image">
+                        Séminaire d'entreprise
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Séminaire dans la salle Philippe Le Bel</div>
+                        <div class="gallery-category">Entreprise</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="ceremonies" onclick="openLightbox(7)">
+                    <div class="gallery-image">
+                        Cérémonie laïque jardins
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Cérémonie laïque</div>
+                        <div class="gallery-category">Cérémonies</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="mariages" onclick="openLightbox(8)">
+                    <div class="gallery-image">
+                        Vin d'honneur terrasse
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Vin d'honneur sur la terrasse</div>
+                        <div class="gallery-category">Mariages</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="jardins" onclick="openLightbox(9)">
+                    <div class="gallery-image">
+                        Vue aérienne du château
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Vue aérienne du domaine</div>
+                        <div class="gallery-category">Château</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="receptions" onclick="openLightbox(10)">
+                    <div class="gallery-image">
+                        Soirée dansante
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Soirée dansante</div>
+                        <div class="gallery-category">Réceptions</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="gastronomie" onclick="openLightbox(11)">
+                    <div class="gallery-image">
+                        Buffet desserts
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Buffet de desserts</div>
+                        <div class="gallery-category">Gastronomie</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="entreprise" onclick="openLightbox(12)">
+                    <div class="gallery-image">
+                        Team building parc
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Team building dans le parc</div>
+                        <div class="gallery-category">Entreprise</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Section -->
+    <section class="instagram-section">
+        <h2>Suivez-nous sur Instagram</h2>
+        <p>Découvrez nos dernières actualités et coulisses du château</p>
+        <a href="https://instagram.com/chateau_vivier" target="_blank" class="btn-instagram">@chateau_vivier</a>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <span class="lightbox-nav lightbox-prev" onclick="prevImage()">‹</span>
+            <span class="lightbox-nav lightbox-next" onclick="nextImage()">›</span>
+            <div class="lightbox-image" id="lightboxImage">
+                <!-- Image will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Château du Vivier - Tous droits réservés</p>
+        <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 10px;">
+            77610 Fontenay-Trésigny • 01 64 42 64 80 • contact@chateauduvivier.com
+        </p>
+    </footer>
+
+    <script>
+        let currentImage = 1;
+        const totalImages = 12;
+
+        // Mobile menu
+        document.getElementById('mobileMenu').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Filter gallery
+        function filterGallery(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter items
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Lightbox functions
+        function openLightbox(imageIndex) {
+            currentImage = imageIndex;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.innerHTML = `<div style="width: 800px; height: 600px; background: linear-gradient(135deg, var(--gold-light), var(--sage-green)); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; border-radius: 10px;">Image ${imageIndex}</div>`;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function nextImage() {
+            currentImage = currentImage >= totalImages ? 1 : currentImage + 1;
+            openLightbox(currentImage);
+        }
+
+        function prevImage() {
+            currentImage = currentImage <= 1 ? totalImages : currentImage - 1;
+            openLightbox(currentImage);
+        }
+
+        // Close lightbox with Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            }
+        });
+    </script>
+</body>
+</html>
