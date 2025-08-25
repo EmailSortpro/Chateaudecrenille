@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Témoignages clients du Château du Vivier - Avis mariages et événements d'entreprise">
+    <title>Témoignages - Château du Vivier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FAF7F2;
+            --warm-white: #FFFFFF;
+            --gold: #C9A961;
+            --gold-light: #E4D4A8;
+            --sage-green: #7A8B7F;
+            --warm-brown: #8B6F47;
+            --charcoal: #3A3A3A;
+            --light-gray: #F5F5F5;
+            --soft-pink: #F5E6E0;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--warm-white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(255,255,255,0.98);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--soft-pink) 100%);
+            border-radius: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--charcoal);
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 50px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: var(--warm-brown);
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            color: var(--warm-white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #2A2A2A 100%);
+            color: var(--warm-white);
+            padding: 50px;
+            text-align: center;
+        }
+
+        /* Mobile */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--charcoal);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                background: var(--warm-white);
+                width: 100%;
+                transition: 0.3s;
+                padding: 20px 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                gap: 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .filters-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-section,
+            .featured-testimonial,
+            .stats-section {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">CHÂTEAU DU VIVIER</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/histoire.html">Histoire</a></li>
+                <li><a href="/mariages.html">Mariages</a></li>
+                <li><a href="/entreprise.html">Entreprise</a></li>
+                <li><a href="/galerie.html">Galerie</a></li>
+                <li><a href="/tarifs.html">Tarifs</a></li>
+                <li><a href="/temoignages.html" class="active">Témoignages</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <h1>Témoignages</h1>
+        <p>
+            Découvrez les expériences inoubliables de nos mariés et clients entreprise
+        </p>
+        <div class="rating-summary">
+            <div class="stars">★★★★★</div>
+            <div class="rating-text">4.9/5 basé sur 127 avis</div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="filters-container">
+            <button class="filter-btn active" onclick="filterTestimonials('all')">Tous</button>
+            <button class="filter-btn" onclick="filterTestimonials('mariage')">Mariages</button>
+            <button class="filter-btn" onclick="filterTestimonials('entreprise')">Entreprise</button>
+            <button class="filter-btn" onclick="filterTestimonials('recent')">Plus récents</button>
+        </div>
+    </section>
+
+    <!-- Testimonials Grid -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-category="mariage">
+                    <div class="testimonial-header">
+                        <div class="testimonial-author">
+                            <div class="author-name">Sophie & Alexandre</div>
+                            <div class="author-event">Mariage - 150 invités</div>
+                        </div>
+                        <div class="testimonial-rating">★★★★★</div>
+                    </div>
+                    <p class="testimonial-text">
+                        "Un mariage de rêve dans un cadre exceptionnel ! La Sainte Chapelle est magnifique, 
+                        le service impeccable et Anne & Philippe sont adorables. Nos invités nous en parlent encore. 
+                        Le vin d'honneur dans les jardins était magique."
+                    </p>
+                    <div class="testimonial-date">Septembre 2023</div>
+                </div>
+
+                <div class="testimonial-card" data-category="entreprise">
+                    <div class="testimonial-header">
+                        <div class="testimonial-author">
+                            <div class="author-name">Jean-Marc D.</div>
+                            <div class="author-event">Séminaire - BNP Paribas</div>
+                        </div>
+                        <div class="testimonial-rating">★★★★★</div>
+                    </div>
+                    <p class="testimonial-text">
+                        "Organisation parfaite pour notre séminaire annuel. Les salles sont très bien équipées, 
+                        le cadre inspire et motive les équipes. Le team building dans le parc était excellent. 
+                        Je recommande vivement."
+                    </p>
+                    <div class="testimonial-date">Octobre 2023</div>
+                </div>
+
+                <div class="testimonial-card" data-category="mariage">
+                    <div class="testimonial-header">
+                        <div class="testimonial-author">
+                            <div class="author-name">Marie & Thomas</div>
+                            <div class="author-event">Mariage - 200 invités</div>
+                        </div>
+                        <div class="testimonial-rating">★★★★★</div>
+                    </div>
+                    <p class="testimonial-text">
+                        "Nous avons vécu un conte de fées ! Le château est sublime, la décoration florale d'Anne 
+                        était parfaite. Le dîner dans la salle Charles VII restera gravé dans nos mémoires. 
+                        Merci pour votre professionnalisme."
+                    </p>
+                    <div class="testimonial-date">Juillet 2023</div>
+                </div>
+
+                <div class="testimonial-card" data-category="mariage">
+                    <div class="testimonial-header">
+                        <div class="testimonial-author">
+                            <div class="author-name">Émilie & Pierre</div>
+                            <div class="author-event">Mariage - 120 invités</div>
+                        </div>
+                        <div class="testimonial-rating">★★★★★</div>
+                    </div>
+                    <p class="testimonial-text">
+                        "Le Château du Vivier a dépassé toutes nos attentes. La cérémonie laïque dans les ruines 
+                        était émouvante, le cocktail au bord de l'étang romantique. Anne et Philippe ont été 
+                        présents à chaque étape."
+                    </p>
+                    <div class="testimonial-date">Juin 2023</div>
+                </div>
+
+                <div class="testimonial-card" data-category="entreprise">
+                    <div class="testimonial-header">
+                        <div class="testimonial-author">
+                            <div class="author-name">Sylvie M.</div>
+                            <div class="author-event">Soirée de Gala - L'Oréal</div>
+                        </div>
+                        <div class="testimonial-rating">★★★★★</div>
+                    </div>
+                    <p class="testimonial-text">
+                        "Notre soirée de fin d'année fut exceptionnelle. Le cadre historique a impressionné 
+                        tous nos collaborateurs. La gastronomie était raffinée et le service irréprochable. 
+                        Une adresse à retenir !"
+                    </p>
+                    <div class="testimonial-date">Décembre 2023</div>
+                </div>
+
+                <div class="testimonial-card" data-category="mariage">
+                    <div class="testimonial-header">
+                        <div class="testimonial-author">
+                            <div class="author-name">Camille & Julien</div>
+                            <div class="author-event">Mariage - 180 invités</div>
+                        </div>
+                        <div class="testimonial-rating">★★★★★</div>
+                    </div>
+                    <p class="testimonial-text">
+                        "Un lieu magique où chaque détail est pensé. Les photos dans le parc sont sublimes, 
+                        la soirée dans la salle Philippe Le Bel était parfaite. Le brunch du lendemain 
+                        a prolongé le rêve. Merci infiniment !"
+                    </p>
+                    <div class="testimonial-date">Mai 2023</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Testimonial -->
+    <section class="featured-testimonial">
+        <div class="featured-content">
+            <h2 class="featured-title">Témoignage du Mois</h2>
+            <p class="featured-text">
+                "Le Château du Vivier n'est pas qu'un simple lieu de réception, c'est un endroit 
+                où les rêves deviennent réalité. Anne et Philippe ne sont pas de simples prestataires, 
+                ils deviennent une partie de votre histoire. Leur attention aux détails, leur 
+                gentillesse et leur professionnalisme ont fait de notre mariage le plus beau jour 
+                de notre vie. La Sainte Chapelle pour la cérémonie, les jardins pour le cocktail, 
+                la salle de réception somptueuse... tout était absolument parfait. Nos invités 
+                nous disent encore que c'était le plus beau mariage auquel ils ont assisté."
+            </p>
+            <p class="featured-author">— Charlotte & Vincent, Août 2023</p>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">850+</div>
+                    <div class="stat-label">Mariages Célébrés</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Clients Satisfaits</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.9/5</div>
+                    <div class="stat-label">Note Moyenne</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">127</div>
+                    <div class="stat-label">Avis Vérifiés</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Écrivez Votre Propre Histoire</h2>
+        <p>Rejoignez les centaines de couples et entreprises qui ont fait confiance au Château du Vivier</p>
+        <a href="/contact.html" class="btn-cta">Contactez-nous</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Château du Vivier - Tous droits réservés</p>
+        <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 10px;">
+            77610 Fontenay-Trésigny • 01 64 42 64 80 • contact@chateauduvivier.com
+        </p>
+    </footer>
+
+    <script>
+        // Mobile menu
+        document.getElementById('mobileMenu').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Filter testimonials
+        function filterTestimonials(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter cards
+            const cards = document.querySelectorAll('.testimonial-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else if (category === 'recent') {
+                    card.style.display = 'block'; // In production, filter by date
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>30px;
+        }
+
+        .nav-menu a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .page-hero {
+            padding: 150px 50px 80px;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--soft-pink) 50%, var(--light-gray) 100%);
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .rating-summary {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .stars {
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .rating-text {
+            font-size: 1.2rem;
+            color: var(--charcoal);
+        }
+
+        /* Filters Section */
+        .filters-section {
+            padding: 40px 50px;
+            background: var(--warm-white);
+            border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+        }
+
+        .filters-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 25px;
+            background: var(--light-gray);
+            border: 1px solid rgba(201, 169, 97, 0.3);
+            border-radius: 30px;
+            color: var(--charcoal);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .filter-btn:hover {
+            background: var(--cream);
+            border-color: var(--gold);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            color: var(--warm-white);
+            border-color: var(--gold);
+        }
+
+        /* Testimonials Grid */
+        .testimonials-section {
+            padding: 80px 50px;
+            background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background: var(--warm-white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(201, 169, 97, 0.2);
+        }
+
+        .testimonial-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            flex: 1;
+        }
+
+        .author-name {
+            font-size: 1.3rem;
+            color: var(--warm-brown);
+            margin-bottom: 5px;
+        }
+
+        .author-event {
+            color: var(--charcoal);
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-rating {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .testimonial-text {
+            color: var(--charcoal);
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 20px;
+            opacity: 0.85;
+        }
+
+        .testimonial-date {
+            color: var(--charcoal);
+            opacity: 0.5;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        /* Featured Testimonial */
+        .featured-testimonial {
+            padding: 80px 50px;
+            background: linear-gradient(135deg, var(--sage-green) 0%, #5A6B5F 100%);
+            color: var(--warm-white);
+        }
+
+        .featured-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .featured-title {
+            font-size: 2rem;
+            color: var(--gold-light);
+            margin-bottom: 30px;
+        }
+
+        .featured-text {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .featured-author {
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            padding: 80px 50px;
+            background: var(--warm-white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap:
