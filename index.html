@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Château du Vivier - Lieu d'exception pour mariages et événements d'entreprise en Seine-et-Marne, à 45km de Paris">
+    <title>Château du Vivier - Lieu d'exception pour mariages et événements</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FAF7F2;
+            --warm-white: #FFFFFF;
+            --gold: #C9A961;
+            --gold-light: #E4D4A8;
+            --sage-green: #7A8B7F;
+            --warm-brown: #8B6F47;
+            --charcoal: #3A3A3A;
+            --light-gray: #F5F5F5;
+            --soft-pink: #F5E6E0;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--warm-white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 15px 50px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu > li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            color: var(--charcoal);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            font-weight: 500;
+            display: block;
+            padding: 5px 10px;
+        }
+
+        .nav-menu > li > a:hover {
+            color: var(--gold);
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 250px;
+            background: var(--warm-white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-radius: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            border: 1px solid rgba(201, 169, 97, 0.2);
+        }
+
+        .nav-menu li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            padding: 12px 20px;
+            font-size: 13px;
+            text-transform: none;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a:hover {
+            background: linear-gradient(90deg, rgba(201, 169, 97, 0.1) 0%, transparent 100%);
+            color: var(--gold);
+            padding-left: 25px;
+        }
+
+        .dropdown-indicator {
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 10px;
+            vertical-align: middle;
+        }
+
+        /* Hero Section avec image */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23f5f5f0"/><rect x="200" y="200" width="1520" height="680" fill="%23e8e0d0" rx="20"/><text x="960" y="540" text-anchor="middle" font-family="Georgia" font-size="48" fill="%238B6F47">Château du Vivier</text><text x="960" y="600" text-anchor="middle" font-family="Georgia" font-size="24" fill="%23C9A961">Image du château</text></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to top, var(--warm-white), transparent);
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            z-index: 1;
+            max-width: 900px;
+            padding: 0 20px;
+            color: var(--warm-white);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: var(--gold-light);
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s both;
+            font-style: italic;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-description {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.3s both;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            animation: fadeInUp 1s ease 0.4s both;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+            background: rgba(255,255,255,0.95);
+            padding: 20px 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--charcoal);
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Services Cards */
+        .services {
+            padding: 100px 50px;
+            background: var(--warm-white);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            margin-bottom: 60px;
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            text-decoration: none;
+            display: block;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(201, 169, 97, 0.2);
+        }
+
+        .service-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--gold-light), var(--sage-green));
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            color: rgba(255,255,255,0.9);
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+
+        .service-content {
+            padding: 35px;
+            background: var(--warm-white);
+        }
+
+        .service-title {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            color: var(--charcoal);
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            color: var(--warm-white);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #2A2A2A 100%);
+            color: var(--warm-white);
+            padding: 50px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gold-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                background: var(--warm-white);
+                width: 100%;
+                text-align: left;
+                transition: 0.3s;
+                padding: 20px 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                max-height: calc(100vh - 60px);
+                overflow-y: auto;
+                gap: 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu > li {
+                border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: rgba(201, 169, 97, 0.05);
+                margin: 0;
+                display: none;
+            }
+
+            .nav-menu li.dropdown-open .dropdown {
+                display: block;
+            }
+
+            .dropdown a {
+                padding-left: 40px;
+                font-size: 13px;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero {
+                background-attachment: scroll;
+            }
+
+            .hero-stats {
+                gap: 20px;
+            }
+
+            .stat {
+                min-width: 130px;
+                padding: 15px 20px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">CHÂTEAU DU VIVIER</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/histoire.html">Histoire</a></li>
+                <li>
+                    <a href="#">Mariages <span class="dropdown-indicator">▼</span></a>
+                    <div class="dropdown">
+                        <a href="/ceremonie-laique.html">Cérémonie Laïque</a>
+                        <a href="/sainte-chapelle.html">Sainte Chapelle</a>
+                        <a href="/vin-honneur.html">Vin d'Honneur</a>
+                        <a href="/diner-reception.html">Dîner de Réception</a>
+                        <a href="/decoration-florale.html">Décoration Florale</a>
+                        <a href="/photos-mariage.html">Séance Photos</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">Entreprise <span class="dropdown-indicator">▼</span></a>
+                    <div class="dropdown">
+                        <a href="/seminaires.html">Séminaires</a>
+                        <a href="/journees-etude.html">Journées d'Étude</a>
+                        <a href="/team-building.html">Team Building</a>
+                        <a href="/soirees-gala.html">Soirées de Gala</a>
+                        <a href="/lancement-produit.html">Lancement de Produit</a>
+                    </div>
+                </li>
+                <li><a href="/galerie.html">Galerie</a></li>
+                <li><a href="/partenaires.html">Partenaires</a></li>
+                <li><a href="/temoignages.html">Témoignages</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section avec image du château -->
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <h1>Château du Vivier</h1>
+            <p class="tagline">Un lieu d'exception depuis 1285</p>
+            <p class="hero-description">
+                À 45 km de Paris, implanté sur 7 hectares de parc majestueux, 
+                le Château du Vivier vous accueille dans un cadre historique unique 
+                pour célébrer vos plus beaux moments.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">850+</div>
+                    <div class="stat-label">Mariages</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Hectares</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">700</div>
+                    <div class="stat-label">Ans d'Histoire</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">220</div>
+                    <div class="stat-label">Convives Max</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Nos Services</h2>
+            <p class="section-subtitle">Des prestations d'exception pour chaque événement</p>
+            
+            <div class="services-grid">
+                <a href="/histoire.html" class="service-card fade-in">
+                    <div class="service-image">
+                        <div class="service-icon">🏰</div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Histoire du Château</h3>
+                        <p class="service-description">
+                            Découvrez 700 ans d'histoire royale. Maison de campagne des rois de France, 
+                            de Philippe IV le Bel à Louis XIV.
+                        </p>
+                        <span class="btn-primary">Découvrir</span>
+                    </div>
+                </a>
+
+                <a href="/sainte-chapelle.html" class="service-card fade-in">
+                    <div class="service-image">
+                        <div class="service-icon">💒</div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Mariages de Rêve</h3>
+                        <p class="service-description">
+                            Célébrez votre union dans notre Sainte Chapelle historique. 
+                            Salles jusqu'à 220 convives, parc de 7 hectares.
+                        </p>
+                        <span class="btn-primary">Découvrir</span>
+                    </div>
+                </a>
+
+                <a href="/seminaires.html" class="service-card fade-in">
+                    <div class="service-image">
+                        <div class="service-icon">🏢</div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Événements Corporate</h3>
+                        <p class="service-description">
+                            Séminaires, team building, soirées de gala dans un cadre prestigieux. 
+                            3 salles modulables, équipements professionnels.
+                        </p>
+                        <span class="btn-primary">Découvrir</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/histoire.html">Histoire</a>
+                <a href="/sainte-chapelle.html">Mariages</a>
+                <a href="/seminaires.html">Entreprise</a>
+                <a href="/galerie.html">Galerie</a>
+                <a href="/partenaires.html">Partenaires</a>
+                <a href="/temoignages.html">Témoignages</a>
+                <a href="/contact.html">Contact</a>
+            </div>
+            <p>&copy; 2024 Château du Vivier - Tous droits réservés</p>
+            <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 10px;">
+                77610 Fontenay-Trésigny • 01 64 42 64 80 • contact@chateauduvivier.com
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenu').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Mobile dropdown toggle
+        document.querySelectorAll('.nav-menu > li > a').forEach(link => {
+            if (link.querySelector('.dropdown-indicator')) {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const parent = link.parentElement;
+                        parent.classList.toggle('dropdown-open');
+                    }
+                });
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
