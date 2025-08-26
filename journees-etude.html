@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Journées d'étude au Château du Vivier - Cadre studieux et inspirant pour vos formations et réunions de travail">
+    <title>Journées d'Étude - Château du Vivier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FAF7F2;
+            --warm-white: #FFFFFF;
+            --gold: #C9A961;
+            --gold-light: #E4D4A8;
+            --sage-green: #7A8B7F;
+            --warm-brown: #8B6F47;
+            --charcoal: #3A3A3A;
+            --light-gray: #F5F5F5;
+            --soft-pink: #F5E6E0;
+            --study-blue: #5C7A9D;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--warm-white);
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 15px 50px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--charcoal);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            padding: 5px 10px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 120px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, var(--study-blue) 0%, var(--sage-green) 100%);
+            text-align: center;
+            color: var(--warm-white);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 80px 50px;
+            background: var(--warm-white);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 50px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(92, 122, 157, 0.2);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--study-blue), var(--sage-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--warm-white);
+        }
+
+        .benefit-title {
+            font-size: 1.5rem;
+            color: var(--study-blue);
+            margin-bottom: 15px;
+        }
+
+        .benefit-description {
+            color: var(--charcoal);
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* Schedule Section */
+        .schedule-section {
+            padding: 80px 50px;
+            background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+        }
+
+        .schedule-container {
+            max-width: 1000px;
+            margin: 60px auto;
+        }
+
+        .day-schedule {
+            background: var(--warm-white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+
+        .schedule-title {
+            font-size: 1.8rem;
+            color: var(--study-blue);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .schedule-timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .schedule-timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold-light);
+        }
+
+        .schedule-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--cream);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .schedule-item:hover {
+            transform: translateX(10px);
+        }
+
+        .schedule-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--gold);
+            border-radius: 50%;
+            border: 3px solid var(--warm-white);
+        }
+
+        .schedule-time {
+            font-weight: bold;
+            color: var(--study-blue);
+            margin-bottom: 5px;
+        }
+
+        .schedule-activity {
+            font-size: 1.1rem;
+            color: var(--charcoal);
+        }
+
+        /* Formulas Section */
+        .formulas-section {
+            padding: 80px 50px;
+            background: var(--warm-white);
+        }
+
+        .formulas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .formula-card {
+            background: var(--warm-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(92, 122, 157, 0.2);
+        }
+
+        .formula-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .formula-header {
+            background: linear-gradient(135deg, var(--study-blue), var(--sage-green));
+            color: var(--warm-white);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .formula-name {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .formula-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .formula-price small {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .formula-body {
+            padding: 30px;
+        }
+
+        .formula-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .formula-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(92, 122, 157, 0.1);
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .formula-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--study-blue);
+            font-weight: bold;
+        }
+
+        .btn-formula {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--charcoal);
+            text-decoration: none;
+            text-align: center;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-formula:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Options Section */
+        .options-section {
+            padding: 80px 50px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .option-item {
+            background: var(--warm-white);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .option-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .option-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .option-name {
+            font-size: 1.2rem;
+            color: var(--study-blue);
+            margin-bottom: 10px;
+        }
+
+        .option-price {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, var(--study-blue) 0%, var(--sage-green) 100%);
+            text-align: center;
+            color: var(--warm-white);
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--charcoal);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #2A2A2A 100%);
+            color: var(--warm-white);
+            padding: 50px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .benefits-grid,
+            .formulas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .schedule-timeline {
+                padding-left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">CHÂTEAU DU VIVIER</a>
+            <ul class="nav-menu">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/seminaires.html">Séminaires</a></li>
+                <li><a href="/journees-etude.html">Journées d'Étude</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Journées d'Étude</h1>
+        <p class="hero-subtitle">
+            Un environnement studieux et inspirant pour vos formations, 
+            réunions de travail et sessions de brainstorming
+        </p>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">Pourquoi Choisir le Château</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">📍</div>
+                    <h3 class="benefit-title">Localisation Idéale</h3>
+                    <p class="benefit-description">
+                        À 45 minutes de Paris, facilement accessible en transport ou voiture, 
+                        dans un environnement calme et verdoyant.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title">Concentration Optimale</h3>
+                    <p class="benefit-description">
+                        Loin des distractions urbaines, notre cadre historique favorise 
+                        la concentration et stimule la créativité.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛠️</div>
+                    <h3 class="benefit-title">Équipements Complets</h3>
+                    <p class="benefit-description">
+                        Salles entièrement équipées avec matériel audiovisuel dernière génération 
+                        et connexion internet haut débit.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">☕</div>
+                    <h3 class="benefit-title">Services Premium</h3>
+                    <p class="benefit-description">
+                        Restauration de qualité, pauses gourmandes et service attentionné 
+                        pour le confort de vos participants.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌳</div>
+                    <h3 class="benefit-title">Espaces Détente</h3>
+                    <p class="benefit-description">
+                        7 hectares de parc pour des pauses ressourçantes et des moments 
+                        de networking en pleine nature.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">👨‍💼</div>
+                    <h3 class="benefit-title">Support Dédié</h3>
+                    <p class="benefit-description">
+                        Un coordinateur à votre écoute pour garantir le bon déroulement 
+                        de votre journée d'étude.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="schedule-section">
+        <div class="container">
+            <h2 class="section-title">Déroulement Type</h2>
+            
+            <div class="schedule-container">
+                <div class="day-schedule">
+                    <h3 class="schedule-title">Journée d'Étude Classique</h3>
+                    <div class="schedule-timeline">
+                        <div class="schedule-item">
+                            <div class="schedule-time">8h30 - 9h00</div>
+                            <div class="schedule-activity">Accueil café & viennoiseries</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">9h00 - 10h45</div>
+                            <div class="schedule-activity">Session de travail matinale</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">10h45 - 11h00</div>
+                            <div class="schedule-activity">Pause café</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">11h00 - 12h30</div>
+                            <div class="schedule-activity">Ateliers ou présentations</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">12h30 - 14h00</div>
+                            <div class="schedule-activity">Déjeuner au restaurant du château</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">14h00 - 15h45</div>
+                            <div class="schedule-activity">Session de l'après-midi</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">15h45 - 16h00</div>
+                            <div class="schedule-activity">Pause gourmande</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">16h00 - 17h30</div>
+                            <div class="schedule-activity">Synthèse et conclusions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulas Section -->
+    <section class="formulas-section">
+        <div class="container">
+            <h2 class="section-title">Nos Formules</h2>
+            
+            <div class="formulas-grid">
+                <div class="formula-card">
+                    <div class="formula-header">
+                        <h3 class="formula-name">Essentielle</h3>
+                        <div class="formula-price">
+                            55€ <small>/ personne</small>
+                        </div>
+                    </div>
+                    <div class="formula-body">
+                        <ul class="formula-features">
+                            <li>Salle équipée journée complète</li>
+                            <li>Accueil café viennoiseries</li>
+                            <li>Pause café matin et après-midi</li>
+                            <li>Déjeuner menu du jour</li>
+                            <li>Eau minérale en salle</li>
+                            <li>WiFi haut débit</li>
+                            <li>Parking gratuit</li>
+                        </ul>
+                        <a href="/contact.html" class="btn-formula">Choisir</a>
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-header">
+                        <h3 class="formula-name">Confort</h3>
+                        <div class="formula-price">
+                            75€ <small>/ personne</small>
+                        </div>
+                    </div>
+                    <div class="formula-body">
+                        <ul class="formula-features">
+                            <li>Tous les services Essentielle</li>
+                            <li>Déjeuner 3 services au choix</li>
+                            <li>Pauses gourmandes améliorées</li>
+                            <li>Jus de fruits et softs</li>
+                            <li>Paperboard et fournitures</li>
+                            <li>Vidéoprojecteur HD</li>
+                            <li>Support technique</li>
+                        </ul>
+                        <a href="/contact.html" class="btn-formula">Choisir</a>
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <div class="formula-header">
+                        <h3 class="formula-name">Premium</h3>
+                        <div class="formula-price">
+                            95€ <small>/ personne</small>
+                        </div>
+                    </div>
+                    <div class="formula-body">
+                        <ul class="formula-features">
+                            <li>Tous les services Confort</li>
+                            <li>Déjeuner gastronomique</li>
+                            <li>Open bar softs permanent</li>
+                            <li>Cocktail de clôture</li>
+                            <li>Salle de sous-commission</li>
+                            <li>Coordinateur dédié</li>
+                            <li>Navette gare sur demande</li>
+                        </ul>
+                        <a href="/contact.html" class="btn-formula">Choisir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Options Section -->
+    <section class="options-section">
+        <div class="container">
+            <h2 class="section-title">Options Supplémentaires</h2>
+            
+            <div class="options-grid">
+                <div class="option-item">
+                    <div class="option-icon">🎥</div>
+                    <div class="option-name">Captation Vidéo</div>
+                    <div class="option-price">Sur devis</div>
+                </div>
+                <div class="option-item">
+                    <div class="option-icon">🎙️</div>
+                    <div class="option-name">Système Conférence</div>
+                    <div class="option-price">150€ / jour</div>
+                </div>
+                <div class="option-item">
+                    <div class="option-icon">💻</div>
+                    <div class="option-name">Ordinateurs Portables</div>
+                    <div class="option-price">30€ / unité</div>
+                </div>
+                <div class="option-item">
+                    <div class="option-icon">🚐</div>
+                    <div class="option-name">Navette Groupe</div>
+                    <div class="option-price">Sur devis</div>
+                </div>
+                <div class="option-item">
+                    <div class="option-icon">🏨</div>
+                    <div class="option-name">Hébergement</div>
+                    <div class="option-price">Tarifs partenaires</div>
+                </div>
+                <div class="option-item">
+                    <div class="option-icon">🎯</div>
+                    <div class="option-name">Animation Pause</div>
+                    <div class="option-price">À partir de 200€</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2 class="cta-title">Réservez Votre Journée d'Étude</h2>
+        <p class="cta-text">
+            Offrez à vos équipes un cadre exceptionnel pour vos formations et réunions de travail
+        </p>
+        <a href="/contact.html" class="btn-cta">Demander un devis</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="/">Accueil</a>
+            <a href="/seminaires.html">Séminaires</a>
+            <a href="/journees-etude.html">Journées d'Étude</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+        <p>&copy; 2024 Château du Vivier - Tous droits réservés</p>
+        <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 10px;">
+            77610 Fontenay-Trésigny • 01 64 42 64 80
+        </p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
