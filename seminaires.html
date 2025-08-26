@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Séminaires d'entreprise au Château du Vivier - Salles équipées, cadre prestigieux et services sur-mesure à 45km de Paris">
+    <title>Séminaires d'Entreprise - Château du Vivier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FAF7F2;
+            --warm-white: #FFFFFF;
+            --gold: #C9A961;
+            --gold-light: #E4D4A8;
+            --sage-green: #7A8B7F;
+            --warm-brown: #8B6F47;
+            --charcoal: #3A3A3A;
+            --light-gray: #F5F5F5;
+            --soft-pink: #F5E6E0;
+            --business-blue: #4A5F7A;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--warm-white);
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 15px 50px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--charcoal);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            padding: 5px 10px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 120px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, var(--business-blue) 0%, var(--sage-green) 100%);
+            text-align: center;
+            color: var(--warm-white);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--gold-light);
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* Rooms Section */
+        .rooms-section {
+            padding: 80px 50px;
+            background: var(--warm-white);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--gold), var(--warm-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+            margin-bottom: 60px;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .room-card {
+            background: var(--warm-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(74, 95, 122, 0.2);
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(74, 95, 122, 0.2);
+        }
+
+        .room-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--business-blue), var(--sage-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--warm-white);
+        }
+
+        .room-content {
+            padding: 30px;
+        }
+
+        .room-name {
+            font-size: 1.6rem;
+            color: var(--business-blue);
+            margin-bottom: 15px;
+        }
+
+        .room-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--charcoal);
+            font-size: 0.95rem;
+        }
+
+        .spec-icon {
+            color: var(--gold);
+        }
+
+        /* Configurations */
+        .configurations-section {
+            padding: 80px 50px;
+            background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+        }
+
+        .config-table {
+            max-width: 1000px;
+            margin: 60px auto;
+            overflow-x: auto;
+        }
+
+        .config-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--warm-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .config-table th {
+            background: linear-gradient(135deg, var(--business-blue), var(--sage-green));
+            color: var(--warm-white);
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .config-table td {
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(74, 95, 122, 0.1);
+        }
+
+        .config-table tr:hover td {
+            background: rgba(74, 95, 122, 0.05);
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 80px 50px;
+            background: var(--warm-white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .service-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(74, 95, 122, 0.15);
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .service-name {
+            font-size: 1.3rem;
+            color: var(--business-blue);
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            color: var(--charcoal);
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Packages */
+        .packages-section {
+            padding: 80px 50px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .package-card {
+            background: var(--warm-white);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(74, 95, 122, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .package-card.featured {
+            border: 2px solid var(--gold);
+            transform: scale(1.05);
+        }
+
+        .package-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: var(--warm-white);
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .package-name {
+            font-size: 1.8rem;
+            color: var(--business-blue);
+            margin-bottom: 10px;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .package-price small {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .package-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(74, 95, 122, 0.1);
+            color: var(--charcoal);
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .btn-package {
+            display: inline-block;
+            width: 100%;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--business-blue), var(--sage-green));
+            color: var(--warm-white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-package:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Activities */
+        .activities-section {
+            padding: 80px 50px;
+            background: var(--warm-white);
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .activity-card {
+            background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .activity-name {
+            font-size: 1.2rem;
+            color: var(--business-blue);
+            margin-bottom: 10px;
+        }
+
+        .activity-duration {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, var(--business-blue) 0%, var(--sage-green) 100%);
+            text-align: center;
+            color: var(--warm-white);
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--charcoal);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #2A2A2A 100%);
+            color: var(--warm-white);
+            padding: 50px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                gap: 30px;
+            }
+
+            .rooms-grid,
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .config-table {
+                overflow-x: scroll;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">CHÂTEAU DU VIVIER</a>
+            <ul class="nav-menu">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/seminaires.html">Séminaires</a></li>
+                <li><a href="/journees-etude.html">Journées d'Étude</a></li>
+                <li><a href="/team-building.html">Team Building</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Séminaires d'Entreprise</h1>
+        <p class="hero-subtitle">
+            Un cadre prestigieux pour vos événements professionnels, 
+            à seulement 45 minutes de Paris
+        </p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-number">3</div>
+                <div class="hero-stat-label">Salles modulables</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">220</div>
+                <div class="hero-stat-label">Personnes max</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">7</div>
+                <div class="hero-stat-label">Hectares de parc</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">500+</div>
+                <div class="hero-stat-label">Événements réussis</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section class="rooms-section">
+        <div class="container">
+            <h2 class="section-title">Nos Espaces de Travail</h2>
+            <p class="section-subtitle">Des salles équipées et modulables pour tous vos besoins</p>
+            
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <div class="room-image">🏛️</div>
+                    <div class="room-content">
+                        <h3 class="room-name">Salle Charles V</h3>
+                        <div class="room-specs">
+                            <div class="spec-item">
+                                <span class="spec-icon">📐</span>
+                                <span>200 m²</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-icon">👥</span>
+                                <span>150 personnes</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-icon">💡</span>
+                                <span>Lumière naturelle</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-icon">🎥</span>
+                                <span>Vidéoprojecteur 4K</span>
+                            </div>
+                        </div>
+                        <p>Salle plénière idéale pour conférences et présentations grand format.</p>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-image">💼</div>
+                    <div class="room-content">
+                        <h3 class="room-name">Salon Louis XIV</h3>
+                        <div class="room-specs">
+                            <div class="spec-item">
+                                <span class="spec-icon">📐</span>
+                                <span>80 m²</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-icon">👥</span>
+                                <span>50 personnes</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-icon">🖥️</span>
+                                <span>Écran tactile</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-icon">☕</span>
+                                <span>Espace pause</span>
+                            </div>
+                        </div>
+                        <p>Parfait pour réunions de direction et sessions de brainstorming.</p>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-image">🎯</div>
+                    <div class="room-content">
+                        <h3 class="room-name">Espace Philippe IV</h3>
+                        <div class="room-specs">
+                            <div class="spec-item">
+                                <span class="spec-icon">📐</span>
+                                <span>120 m²</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-icon">👥</span>
+                                <span>80 personnes</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-icon">🔊</span>
+                                <span>Système audio</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-icon">🪟</span>
+                                <span>Vue sur parc</span>
+                            </div>
+                        </div>
+                        <p>Salle polyvalente pour formations et ateliers collaboratifs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Configurations Section -->
+    <section class="configurations-section">
+        <div class="container">
+            <h2 class="section-title">Configurations Possibles</h2>
+            
+            <div class="config-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Salle</th>
+                            <th>Théâtre</th>
+                            <th>Classe</th>
+                            <th>U</th>
+                            <th>Banquet</th>
+                            <th>Cocktail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Salle Charles V</td>
+                            <td>150</td>
+                            <td>80</td>
+                            <td>50</td>
+                            <td>120</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>Salon Louis XIV</td>
+                            <td>50</td>
+                            <td>30</td>
+                            <td>25</td>
+                            <td>40</td>
+                            <td>70</td>
+                        </tr>
+                        <tr>
+                            <td>Espace Philippe IV</td>
+                            <td>80</td>
+                            <td>50</td>
+                            <td>35</td>
+                            <td>60</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>Configuration combinée</td>
+                            <td>220</td>
+                            <td>150</td>
+                            <td>-</td>
+                            <td>180</td>
+                            <td>350</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title">Équipements & Services</h2>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">🖥️</div>
+                    <h3 class="service-name">High-Tech</h3>
+                    <p class="service-description">
+                        Vidéoprojecteurs 4K, écrans tactiles, système de visioconférence
+                    </p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🌐</div>
+                    <h3 class="service-name">Connectivité</h3>
+                    <p class="service-description">
+                        WiFi haut débit, prises réseau, bornes de recharge
+                    </p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">☕</div>
+                    <h3 class="service-name">Restauration</h3>
+                    <p class="service-description">
+                        Pauses café, déjeuners d'affaires, cocktails dînatoires
+                    </p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">👔</div>
+                    <h3 class="service-name">Conciergerie</h3>
+                    <p class="service-description">
+                        Accueil personnalisé, vestiaire, service voiturier
+                    </p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🏨</div>
+                    <h3 class="service-name">Hébergement</h3>
+                    <p class="service-description">
+                        Partenariats hôteliers, navettes organisées
+                    </p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">📋</div>
+                    <h3 class="service-name">Support</h3>
+                    <p class="service-description">
+                        Coordinateur dédié, assistance technique permanente
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages-section">
+        <div class="container">
+            <h2 class="section-title">Formules Séminaires</h2>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <h3 class="package-name">Demi-Journée</h3>
+                    <div class="package-price">
+                        45€ 
+                        <small>/ personne</small>
+                    </div>
+                    <ul class="package-features">
+                        <li>Salle équipée 4h</li>
+                        <li>Pause café permanente</li>
+                        <li>Viennoiseries ou mignardises</li>
+                        <li>Support technique</li>
+                        <li>Parking gratuit</li>
+                    </ul>
+                    <a href="/contact.html" class="btn-package">Réserver</a>
+                </div>
+
+                <div class="package-card featured">
+                    <span class="package-badge">Plus populaire</span>
+                    <h3 class="package-name">Journée Complète</h3>
+                    <div class="package-price">
+                        85€ 
+                        <small>/ personne</small>
+                    </div>
+                    <ul class="package-features">
+                        <li>Salle équipée journée</li>
+                        <li>2 pauses gourmandes</li>
+                        <li>Déjeuner 3 services</li>
+                        <li>Matériel audiovisuel</li>
+                        <li>Coordinateur dédié</li>
+                        <li>Espace détente</li>
+                    </ul>
+                    <a href="/contact.html" class="btn-package">Réserver</a>
+                </div>
+
+                <div class="package-card">
+                    <h3 class="package-name">Résidentiel</h3>
+                    <div class="package-price">
+                        Sur devis
+                    </div>
+                    <ul class="package-features">
+                        <li>Privatisation des espaces</li>
+                        <li>Restauration complète</li>
+                        <li>Activités team building</li>
+                        <li>Soirée de gala</li>
+                        <li>Hébergement partenaire</li>
+                        <li>Conciergerie premium</li>
+                    </ul>
+                    <a href="/contact.html" class="btn-package">Demander</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="activities-section">
+        <div class="container">
+            <h2 class="section-title">Activités Team Building</h2>
+            
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <div class="activity-icon">🏹</div>
+                    <h4 class="activity-name">Tir à l'Arc</h4>
+                    <p class="activity-duration">2 heures</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🍷</div>
+                    <h4 class="activity-name">Dégustation Œnologie</h4>
+                    <p class="activity-duration">1h30</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🎨</div>
+                    <h4 class="activity-name">Atelier Créatif</h4>
+                    <p class="activity-duration">2 heures</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🏆</div>
+                    <h4 class="activity-name">Olympiades</h4>
+                    <p class="activity-duration">3 heures</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🎯</div>
+                    <h4 class="activity-name">Escape Game</h4>
+                    <p class="activity-duration">1h30</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">👨‍🍳</div>
+                    <h4 class="activity-name">Challenge Culinaire</h4>
+                    <p class="activity-duration">3 heures</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2 class="cta-title">Organisez Votre Séminaire au Château</h2>
+        <p class="cta-text">
+            Notre équipe vous accompagne dans l'organisation de votre événement professionnel sur-mesure
+        </p>
+        <a href="/contact.html" class="btn-cta">Demander un devis</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="/">Accueil</a>
+            <a href="/seminaires.html">Séminaires</a>
+            <a href="/journees-etude.html">Journées d'Étude</a>
+            <a href="/team-building.html">Team Building</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+        <p>&copy; 2024 Château du Vivier - Tous droits réservés</p>
+        <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 10px;">
+            77610 Fontenay-Trésigny • 01 64 42 64 80 • entreprise@chateauduvivier.com
+        </p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
